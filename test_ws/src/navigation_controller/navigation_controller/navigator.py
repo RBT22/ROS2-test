@@ -4,6 +4,7 @@ from rclpy.action import ActionClient
 from nav2_msgs.action import NavigateToPose
 from geometry_msgs.msg import PoseStamped
 from action_msgs.msg import GoalStatus
+import time
 
 
 class Navigator(Node):
@@ -40,7 +41,9 @@ class Navigator(Node):
         goal_handle = future.result()
 
         if not goal_handle.accepted:
-            self.get_logger().info('Goal rejected')
+            self.get_logger().info('Goal rejected trying again')
+            time.sleep(1)
+            self.send_goal()
             return
 
         self.get_logger().info('Goal accepted')
