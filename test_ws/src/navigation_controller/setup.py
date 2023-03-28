@@ -12,6 +12,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name, glob('launch/*launch.[pxy][yma]*')),
+        ('share/' + package_name + '/config', glob('config/*.[pxy][yma]*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
