@@ -6,3 +6,9 @@ RUN apt-get update && xargs -a /tmp/apt-dependencies.txt apt-get install -y
 
 COPY pip-dependencies.txt /tmp/pip-dependencies.txt
 RUN pip install -r /tmp/pip-dependencies.txt
+
+# setup entrypoint
+COPY ./entrypoint.sh ./entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
