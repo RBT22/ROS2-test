@@ -6,4 +6,5 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+      - ./test_ws:/test_ws
     command: "/bin/bash"

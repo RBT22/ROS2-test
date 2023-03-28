@@ -1,0 +1,8 @@
+## Build and Install Folders
+*/build
+*/install
+*/log
+*/build_isolated
+*/install_isolated
+*/devel
+*/*cmake-build*
