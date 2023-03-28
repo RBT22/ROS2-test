@@ -3,8 +3,13 @@ version: '3.4'
 services:
   rostest:
     image: rostest
+    environment:
+      - DISPLAY=${DISPLAY}
     build:
       context: .
       dockerfile: ./Dockerfile
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev/dri:/dev/dri
       - ./test_ws:/test_ws
     command: "/bin/bash"
