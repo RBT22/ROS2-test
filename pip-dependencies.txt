@@ -1,0 +1,1 @@
+setuptools==58.2.0 # SetuptoolsDeprecationWarning: setup.py install is deprecated fix
