@@ -22,6 +22,11 @@ def generate_launch_description():
             )
         ),
         launch_arguments={
+            "params_file": os.path.join(
+                get_package_share_directory("navigation_controller"),
+                "config",
+                "nav2_params_mod.yaml",
+            ),
             "use_rviz": LaunchConfiguration("use_rviz"),
             # 'headless': 'True',
         }.items(),
