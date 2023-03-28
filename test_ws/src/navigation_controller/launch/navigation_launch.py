@@ -8,7 +8,18 @@ from launch.substitutions import LaunchConfiguration, TextSubstitution
 
 
 def generate_launch_description():
-   
+    target_pose_x_arg = DeclareLaunchArgument(
+        "x", default_value=TextSubstitution(text="1.18")
+    )
+
+    target_pose_y_arg = DeclareLaunchArgument(
+        "y", default_value=TextSubstitution(text="0.51")
+    )
+
+    target_pose_theta_arg = DeclareLaunchArgument(
+        "theta", default_value=TextSubstitution(text="1.0")
+    )
+
     use_rviz_arg = DeclareLaunchArgument(
         "use_rviz", default_value=TextSubstitution(text="True")
     )
@@ -35,11 +46,21 @@ def generate_launch_description():
     navigator = Node(
         package="navigation_controller",
         executable="navigator",
+        parameters=[
+            {
+                "x": LaunchConfiguration("x"),
+                "y": LaunchConfiguration("y"),
+                "theta": LaunchConfiguration("theta"),
+            }
+        ],
         output="screen",
     )
 
     ld = LaunchDescription()
 
+    ld.add_action(target_pose_x_arg)
+    ld.add_action(target_pose_y_arg)
+    ld.add_action(target_pose_theta_arg)
     ld.add_action(use_rviz_arg)
 
     ld.add_action(nav2_bringup)

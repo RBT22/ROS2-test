@@ -18,9 +18,17 @@ class Navigator(Node):
 
         self.target_pose = PoseStamped()
         self.target_pose.header.frame_id = 'map'
-        self.target_pose.pose.position.x = 0.0
-        self.target_pose.pose.position.y = 0.0
-        self.target_pose.pose.orientation.w = 1.0
+
+        self.declare_parameter('x', 0.0)
+        self.declare_parameter('y', 0.0)
+        self.declare_parameter('theta', 1.0)
+
+        self.target_pose.pose.position.x = self.get_parameter(
+            'x').get_parameter_value().double_value
+        self.target_pose.pose.position.y = self.get_parameter(
+            'y').get_parameter_value().double_value
+        self.target_pose.pose.orientation.w = self.get_parameter(
+            'theta').get_parameter_value().double_value
 
     def send_goal(self):
         goal_msg = NavigateToPose.Goal()
