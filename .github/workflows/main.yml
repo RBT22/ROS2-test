@@ -6,12 +6,12 @@ name: colcon test
 
 jobs:
   test-compose-action:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     name: test compose action
     steps:
-      - uses: actions/checkout@v3
-      - uses: isbang/compose-action@v1.4.1
-        with:
-          compose-file: |
-            docker-compose.yml
-            docker-compose-test.yml
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Run tests
+        run: docker compose -f "docker-compose.yml" -f ""docker-compose-test.yml" up
