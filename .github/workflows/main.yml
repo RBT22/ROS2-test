@@ -3,6 +3,8 @@ name: colcon test
   push:
     branches:
       - main
+    paths-ignore:
+      - '**/README.md'
 
 jobs:
   test-compose-action:
