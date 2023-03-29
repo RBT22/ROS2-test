@@ -1,0 +1,5 @@
+version: '3.4'
+
+services:
+  rostest:
+    command: "colcon test --event-handlers console_cohesion+ --return-code-on-test-failure"
