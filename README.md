@@ -3,6 +3,28 @@
 ![colcon workflow](https://github.com/RBT22/ROS2-test/actions/workflows/main.yml/badge.svg)
 
 
+## Quick Start
+
+Run the container with building the workspace
+
+```
+docker compose run rostest
+```
+
+If you want to use GUI, you have to set up the X server on the host
+
+```
+xhost +local:root
+```
+
+You can start the navigation
+```
+ros2 launch navigation_controller navigation_launch.py 
+```
+Or if you don't want to start RViz add `use_rviz:=False` to the command
+
+
+
 ## Checklist
 
 - [x] Create a public repository on GitHub
@@ -32,4 +54,10 @@ terminates
 window)
 - [x] Commit and push your work with descriptive commit messages
 
+## Tests
 
+You can start the tests by running `colcon test` in the ROS workspace, or by using the following docker compose command
+
+```
+docker compose -f docker-compose.yml -f docker-compose-test.yml up
+```
